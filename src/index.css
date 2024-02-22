@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes ani {
+    from{
+       
+        margin-top: -300px;
+    }
+    to{
+        margin-top: 0px;
+    }
+}
+
+.animated{
+    animation: ani 1s ;
+    
+}
