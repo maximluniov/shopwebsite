@@ -4,6 +4,9 @@ export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
 
+  !localStorage.items? localStorage.items=JSON.stringify([]) : console.log();
+ !localStorage.number? localStorage.number = 0 : console.log();
+ !localStorage.totalPrice? localStorage.totalPrice = 0 : console.log();
 
   const [number, setNumber] = useState(JSON.parse(localStorage.number));
 

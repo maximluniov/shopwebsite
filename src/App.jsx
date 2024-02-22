@@ -11,9 +11,7 @@ function App() {
 
 
 // localStorage.clear()
- !localStorage.items? localStorage.items=JSON.stringify([]) : console.log();
- !localStorage.number? localStorage.number = 0 : console.log();
- !localStorage.totalPrice? localStorage.totalPrice = 0 : console.log();
+ 
 
 
   return (
