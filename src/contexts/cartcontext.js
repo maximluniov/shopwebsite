@@ -7,6 +7,7 @@ export const CartContextProvider = ({ children }) => {
   !localStorage.items? localStorage.items=JSON.stringify([]) : console.log();
  !localStorage.number? localStorage.number = 0 : console.log();
  !localStorage.totalPrice? localStorage.totalPrice = 0 : console.log();
+  localStorage.totalPrice <0 ? localStorage.totalPrice=0 : console.log();
 
   const [number, setNumber] = useState(JSON.parse(localStorage.number));
 
@@ -17,7 +18,12 @@ export const CartContextProvider = ({ children }) => {
       setTotalPrice(prev => prev + price); localStorage.totalPrice = price+totalPrice;
     }
     else {
+      if(totalPrice-price>=0){    
       setTotalPrice(prev => prev - price); localStorage.totalPrice = totalPrice-price;
+      }
+      else{
+        setTotalPrice(0); localStorage.totalPrice = 0;
+      }
     }
   }
 

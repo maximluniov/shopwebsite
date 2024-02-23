@@ -3,16 +3,85 @@
 @tailwind utilities;
 
 @keyframes ani {
-    from{
-       
+    from {
+
         margin-top: -300px;
     }
-    to{
+
+    to {
         margin-top: 0px;
     }
 }
 
-.animated{
-    animation: ani 1s ;
+.animated {
+    animation: ani 1s;
+}
+
+.scaling-number {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .scale-up {
+    transform: scale(1.2);
+  }
+
+
+.cartproducts{
+  max-height: 800px;
+}
+
+.cartproducts::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+}
+.cartproducts::-webkit-scrollbar-track{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
     
 }
+
+
+::-webkit-scrollbar-thumb {
+    background: rgb(168, 164, 152);
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body{
+    font-family: "DM+Serif+Display", sans-serif;
+}
+
+.navbar{
+    font-family: "Poppins", serif;
+}
+
+.enlargetext  {
+    transition: font-size 0.3s ease;
+  }
+  
+  .enlargetext:hover {
+    font-size: 21px ;
+  }
+
+  .enlarge  {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .enlarge:hover {
+    transform: scale(1.01);
+  }
+
+  button:active{
+    transform: scale(1.05);
+  }
