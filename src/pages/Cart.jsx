@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { CartContext } from "../contexts/cartcontext";
 import { FaTrash } from "react-icons/fa";
+import { GoPlusCircle } from "react-icons/go";
+import { CiCircleMinus } from "react-icons/ci";
 const Cart = () => {
 
   const { increaseNumber, decreaseNumber, handletotalPrice, totalPrice } = useContext(CartContext)
@@ -44,14 +46,14 @@ const Cart = () => {
 
 
   return (
-    <div className='pt-40  pb-10 px-10 flex  justify-around gap-y-8 gap-x-8 bg-stone-300 h-screen  text-xl'>
+    <div className='pt-40  pb-10 px-10 flex flex-col gap-y-20 min-h-screen bg-stone-300  '>
 
-      <div className=' w-full overflow-y-auto cartproducts  rounded-md border shadow-lg  bg-white p-2'>
+      <div className='h-fit rounded-md border shadow-lg bg-stone-50  p-2 '>
         {
           products.length ?
             products.sort((a, b) => {
               return a.title.localeCompare(b.title);
-            }).map((product) => (<div className='flex  w-full h-60 items-center p-4 border-b bg-stone-50' key={product.id}>
+            }).map((product) => (<div className='flex  w-full  items-center p-4 border-b bg-stone-50 text-4xl lg:text-xl ' key={product.id}>
 
               <img className='h-32 bg-inherit' src={product?.image} alt="item" />
 
@@ -65,14 +67,14 @@ const Cart = () => {
 
                   <div className='flex justify-between items-center w-full'>
                     <div className='flex gap-x-6 items-center w-full'>
-                      <div className='flex items-center gap-x-4'>
-                        <button className='w-10 font-bold text-2xl rounded-full p-1 bg-red-300 ' onClick={() => increaseCount(product)} >+</button>
+                      <div className='flex items-center gap-x-4 text-5xl lg:text-xl'>
+                        <button className='rounded-full ' onClick={() => increaseCount(product)} ><GoPlusCircle size={window.screen.width <= 1024 ? 80 : 35} /></button>
                         {product.count}
-                        <button className='w-10 font-bold text-2xl rounded-full p-1   bg-red-200' onClick={() => reduceCount(product)}>-</button>
+                        <button className='rounded-full' onClick={() => reduceCount(product)}><CiCircleMinus size={window.screen.width <= 1024 ? 80 : 30} /></button>
                       </div>
 
 
-                      <button onClick={() => deleteProduct(product)}><FaTrash size={25} /></button>
+                      <button onClick={() => deleteProduct(product)}><FaTrash size={window.screen.width <= 1024 ? 60 : 25} /></button>
                     </div>
 
 
@@ -87,31 +89,39 @@ const Cart = () => {
 
               </div>
             </div>
-            )) : <div className='flex items-center justify-center w-full h-full'>Your cart is empty now</div>
+            )) : <div className='flex items-center justify-center w-full h-full text-3xl lg:h-40 '>There are no items in your bag.</div>
         }
 
       </div>
 
-      <div className='w-80'>
-        <p className='font-bold text-2xl '>Summary</p>
-        <div className='bg-stone-50 w-80 h-80 p-4 gap-y-4 flex flex-col justify-between shadow-lg rounded-md sm:w-full'>
-          <div className='text-xl flex flex-col gap-y-2  '>Do you have a promo?
-            <input className='outline-none w-full border border-gray-400 rounded-md p-2' type="text" placeholder='Type here' />
+      {products.length > 0 &&
+        <div className='w-full text-6xl lg:text-xl'>
+          <p className='font-bold  '>Summary</p>
+          <div className='bg-stone-50 w-80  p-4 gap-y-8 flex flex-col justify-between shadow-lg rounded-md sm:w-full'>
+            <div className=' flex flex-col gap-y-2  '>Do you have a promo?
+              <input className='outline-none w-full border border-gray-400 rounded-md p-2 lg:w-2/3' type="text" placeholder='Type here' />
+            </div>
+
+
+            <div className='lg:flex lg:flex-col lg:gap-y-4'>
+              {products.length > 0 &&
+                <div>
+                  <p className='text-gray-400'>Delivery: 2$</p>
+                  <p className='text-gray-400'>Taxes: 4$</p>
+                </div>}
+              <p className=' border-b '> {totalPrice !== 0 && "Total:" + (totalPrice + 6).toFixed(2) + "$"}</p>
+              <div className='flex w-full justify-end'>
+                <button className='text-3xl w-full bg-black text-white px-2 py-8 rounded-xl flex items-center justify-center lg:py-2 lg:w-1/6 '>Buy</button>
+              </div>
+
+            </div>
+
           </div>
-
-
-          <div>
-            {products.length > 0 &&
-              <div>
-                <p className='text-gray-400'>Delivery: 2$</p>
-                <p className='text-gray-400'>Taxes: 4$</p>
-              </div>}
-            <p className='text-2xl border-b'> {totalPrice !== 0 && "Total:" + (totalPrice + 6).toFixed(2) + "$"}</p>
-            <button className='text-3xl w-full bg-black text-white p-2 rounded-xl flex items-center justify-center '>Buy</button>
-          </div>
-
         </div>
-      </div>
+
+
+      }
+
 
 
     </div>

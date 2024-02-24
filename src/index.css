@@ -17,6 +17,23 @@
     animation: ani 1s;
 }
 
+.dropdown{
+  animation: drop 1s;
+}
+
+@keyframes drop{
+  from {
+
+      margin-right: -300px;
+  }
+
+  to {
+      margin-top: 0px;
+  }
+}
+
+
+
 .scaling-number {
     transition: transform 0.3s ease-in-out;
   }
@@ -58,9 +75,9 @@
     background: #555;
 }
 
-body{
+/* body{
     font-family: "DM+Serif+Display", sans-serif;
-}
+} */
 
 .navbar{
     font-family: "Poppins", serif;
